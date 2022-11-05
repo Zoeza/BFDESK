@@ -1,0 +1,352 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="{% static 'bailiff_app/img/logo/logo2.png' %}" rel="icon">
+  <title>Add clients | BFDESK </title>
+  <link href="{% static 'bailiff_app/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'bailiff_app/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'bailiff_app/css/ruang-admin.min.css' %}" rel="stylesheet">
+</head>
+
+<body id="page-top">
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'index'%}">
+        <div class="sidebar-brand-icon">
+          <img src="{% static 'bailiff_app/img/logo/logo.png' %}">
+        </div>
+        <div class="sidebar-brand-text mx-3">BFDESK</div>
+      </a>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'index'%}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+        MANAGEMENT
+      </div>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
+          aria-controls="collapseForm">
+          <i class="far fa-fw fa-window-maximize"></i>
+
+          <span>CLIENTS</span>
+        </a>
+        <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">CLIENTS</h6>
+            <a class="collapse-item" href="{% url 'clients:add-client' %}">Add Clients</a>
+            <a class="collapse-item" href="{% url 'clients:manage-client' %}">Manage Client</a>
+          </div>
+        </div>
+      </li>
+
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
+          aria-controls="collapseTable">
+          <i class="fas fa-fw fa-table"></i>
+          <span>APPOINTMENTS</span>
+        </a>
+        <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Appointments</h6>
+            <a class="collapse-item" href="{% url 'appointments:add-appointment' %}">Add Appointment</a>
+            <a class="collapse-item" href="{% url 'appointments:list-appointment' %}">Manage Appointment</a>
+          </div>
+        </div>
+
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
+          aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="fab fa-fw fa-wpforms"></i>
+
+          <span>EDITING REPORTS</span>
+        </a>
+        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">EDITING REPORTS</h6>
+            <a class="collapse-item" href="">State of the premises</a>
+            <a class="collapse-item" href="{% url 'record_reporting:add-report' %}"> Reporting Record</a>
+
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'record_reporting:list-report' %}">
+          <i class="fas fa-search fa-sm></i>
+          <span>MANAGE REPORTS</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'record_reporting:search-report' %}">
+          <i class="fas fa-search fa-sm"></i>
+          <span>SEARCH REPORTS</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'clients:search-client' %}">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>SEARCH CLIENTS</span>
+        </a>
+      </li>
+
+
+
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+         SETTING
+      </div>
+
+      <li class="nav-item">
+        <a class="nav-link" href="ui-colors.html">
+          <i class="fas fa-cogs fa-sm fa-fw mr-2 "></i>
+          <span>CHANGE PASSWORD</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+
+          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 "></i>
+
+          <span>LOGOUT</span>
+        </a>
+      </li>
+
+
+
+      <hr class="sidebar-divider">
+      <div class="version" id="version-ruangadmin"></div>
+    </ul>
+    <!-- Sidebar -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <!-- TopBar -->
+        <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+          <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+          <ul class="navbar-nav ml-auto">
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <img class="img-profile rounded-circle" src="{% static 'bailiff_app/img/boy.png'%}" style="max-width: 60px">
+                <span class="ml-2 d-none d-lg-inline text-white small">Username</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <!-- Topbar -->
+
+        <!-- Container Fluid-->
+        <div class="container-fluid" id="container-wrapper">
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Record Reporting</h1>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="./">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+            </ol>
+          </div>
+
+
+                <!-- content -->
+        {% block body-content %}
+
+<div class="row">
+    <div class="col-lg-12 mb-4">
+    <!-- Simple Tables -->
+
+
+    <div class="card mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary"> Record reporting</h6>
+        </div>
+        <div class="card-body">
+            <form action="{% url 'record_reporting:submit-report'  %}" name="new_client_form" >
+
+                <div class="form-group">
+                    <label>Bailiff Name</label>
+                    <input type="text" class="form-control" id="bailiff_name" name="bailiff_name"  placeholder="Bailiff Name">
+                    <small id="bailiff_nameHelp" class="form-text text-muted">If you don't want to change let it as it is
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label >Bailiff Address</label>
+                    <input type="text"class="form-control" id="bailiff_address" name="bailiff_address" aria-describedby="bailiff_addressHelp" placeholder="Bailiff Address">
+
+                    <small id="bailiff_addressHelp" class="form-text text-muted">If you don't want to change let it as it is
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" class="form-control" id="court_case_msg_title" name="court_case_msg_title"  placeholder="Title">
+                    <small id="court_case_msg_titleHelp" class="form-text text-muted">If you don't want to change let it as it is
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label>Report Content</label>
+                    <input type="text" class="form-control" id="court_case_msg_content" name="court_case_msg_content"  placeholder="Title">
+                    <small id="court_case_msg_contentHelp" class="form-text text-muted">If you don't want to change let it as it is
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="court_case_lawyer">Lawyer</label>
+                    <input type="text" class="form-control" id="court_case_lawyer" name="court_case_lawyer" aria-describedby="court_case_lawyerHelp" placeholder=" Lawyer">
+                    <small id="court_case_lawyerHelp" class="form-text text-muted">If you don't want to change let it as it is
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="court_case_agent">Agent</label>
+                    <input type="text" class="form-control" id="court_case_agent" name="court_case_agent" aria-describedby="court_case_agentHelp" placeholder=" Agent">
+                    <small id="court_case_agentHelp" class="form-text text-muted">If you don't want to change let it as it is
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="court_case_applicants">Applicants </label>
+                    <input type="text" class="form-control" id="court_case_applicants" name="court_case_applicants" aria-describedby="court_case_applicantsHelp" placeholder=" Applicants Names">
+                    <small id="court_case_applicantsHelp" class="form-text text-muted">If you don't want to change let it as it is
+                    </small>
+                </div>
+
+                 <div class="form-group">
+                    <label for="court_case_defendants">Defendants </label>
+                    <input type="text" class="form-control" id="court_case_defendants" name="court_case_defendants" aria-describedby="court_case_applicantsHelp" placeholder=" Defendants Names">
+                    <small id="court_case_defendantsHelp" class="form-text text-muted">If you don't want to change let it as it is
+                    </small>
+                </div>
+
+                 <div class="form-group">
+                    <label >Date </label>
+                    <input type="date" class="form-control" id="court_case_date" name="court_case_date" aria-describedby="court_case_dateHelp" placeholder="Date">
+                    <small id="court_case_dateHelp" class="form-text text-muted">If you don't want to change let it as it is
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label >Time </label>
+                    <input type="time" class="form-control" id="court_case_time" name="court_case_time" aria-describedby="court_case_timeHelp" placeholder="Time">
+                    <small id="court_case_timeHelp" class="form-text text-muted">If you don't want to change let it as it is
+                    </small>
+                </div>
+
+
+                 <div class="form-group">
+                    <label >Case Number </label>
+                    <input type="number" class="form-control" id="court_case_num" name="court_case_num" aria-describedby="court_case_numHelp" placeholder="Number">
+                    <small id="court_case_numHelp" class="form-text text-muted">If you don't want to change let it as it is
+                    </small>
+                </div>
+
+                <div class="form-group">
+                      <label for="select_format"> Select Format</label>
+                      <select class="form-control" id="select_format" name="select_format" aria-describedby="select_format" placeholder="Select a Format please">
+                        <option>PDF</option>
+                        <option>DOCX</option>
+
+                      </select>
+                    </div>
+
+
+
+                <div class="custom-file mt-2 mb-2">
+                    <button type="submit" class="btn btn-primary">Generate a Report</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+
+  </div>
+</div>
+        {% endblock %}
+
+
+          <!-- Modal Logout -->
+          <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to logout?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                  <a href="{% url 'authentication:logout'%}" class="btn btn-primary">Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!---Container Fluid-->
+      </div>
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+
+        <div class="container my-auto ">
+          <div class="copyright text-center my-auto">
+            <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> developed by
+              <b><a href="http://matromatic.com/" target="_blank">matromatic</a></b>
+            </span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Scroll to top -->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <script src="{% static 'bailiff_app/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'bailiff_app/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'bailiff_app/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'bailiff_app/js/ruang-admin.min.js' %}"></script>
+  <script src="{% static 'bailiff_app/vendor/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'bailiff_app/js/demo/chart-area-demo.js' %}"></script>
+</body>
+
+</html>

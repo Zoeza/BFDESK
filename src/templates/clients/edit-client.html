@@ -1,0 +1,301 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="{% static 'bailiff_app/img/logo/logo2.png' %}" rel="icon">
+  <title>Manage Clients | BFDESK </title>
+  <link href="{% static 'bailiff_app/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'bailiff_app/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'bailiff_app/css/ruang-admin.min.css' %}" rel="stylesheet">
+</head>
+
+<body id="page-top">
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'index'%}">
+        <div class="sidebar-brand-icon">
+          <img src="{% static 'bailiff_app/img/logo/logo.png' %}">
+        </div>
+        <div class="sidebar-brand-text mx-3">BFDESK</div>
+      </a>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'index'%}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+        MANAGEMENT
+      </div>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
+          aria-controls="collapseForm">
+          <i class="far fa-fw fa-window-maximize"></i>
+
+          <span>CLIENTS</span>
+        </a>
+        <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">CLIENTS</h6>
+            <a class="collapse-item" href="{% url 'clients:add-client' %}">Add Clients</a>
+            <a class="collapse-item" href="{% url 'clients:manage-client' %}">Manage Client</a>
+          </div>
+        </div>
+      </li>
+
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
+          aria-controls="collapseTable">
+          <i class="fas fa-fw fa-table"></i>
+          <span>APPOINTEMENTS</span>
+        </a>
+        <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Appoitments</h6>
+            <a class="collapse-item" href="{% url 'appointments:add-appointment' %}">Add Appointemet</a>
+            <a class="collapse-item" href="{% url 'appointments:list-appointment' %}">Manage Appointemet</a>
+          </div>
+        </div>
+
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
+          aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="fab fa-fw fa-wpforms"></i>
+
+          <span>EDITING REPORTS</span>
+        </a>
+        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">EDITING REPORTS</h6>
+            <a class="collapse-item" href="">State of the premises</a>
+            <a class="collapse-item" href="{% url 'record_reporting:add-report' %}"> Reporting Record</a>
+
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'record_reporting:list-report' %}">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>MANAGE REPORTS</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url ' record_reporting:search-report' %} ">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>SEARCH REPORTS</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url ' clients:search-client' %}">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>SEARCH CLIENTS</span>
+        </a>
+      </li>
+
+
+
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+         SETTING
+      </div>
+
+      <li class="nav-item">
+        <a class="nav-link" href="ui-colors.html">
+          <i class="fas fa-cogs fa-sm fa-fw mr-2 "></i>
+          <span>CHANGE PASSWORD</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+
+          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 "></i>
+
+          <span>LOGOUT</span>
+        </a>
+      </li>
+
+
+
+      <hr class="sidebar-divider">
+      <div class="version" id="version-ruangadmin"></div>
+    </ul>
+    <!-- Sidebar -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <!-- TopBar -->
+        <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+          <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+          <ul class="navbar-nav ml-auto">
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <img class="img-profile rounded-circle" src="{% static 'bailiff_app/img/boy.png'%}" style="max-width: 60px">
+                <span class="ml-2 d-none d-lg-inline text-white small">Username</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <!-- Topbar -->
+
+        <!-- Container Fluid-->
+        <div class="container-fluid" id="container-wrapper">
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Clients</h1>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="./">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+            </ol>
+          </div>
+
+         {% block body-content %}
+
+        <div class="row">
+            <div class="col-lg-12 mb-4">
+            <!-- Simple Tables -->
+
+
+            <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Edit Client</h6>
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'clients:update-client' id %}" name="new_client_form" >
+
+                        <div class="form-group">
+                            <label>Client Name</label>
+                            <input type="text" class="form-control" id="name" name="name"  placeholder="{{name}}">
+                            <small id="nameHelp" class="form-text text-muted">If you don't want to change let it as it is
+                            </small>
+                        </div>
+
+
+                        <div class="form-group">
+                          <label>Email</label>
+                          <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="{{email}} ">
+                        </div>
+
+                        <div class="form-group">
+                            <label >Birthday</label>
+                            <input type="date" class="form-control" id="birthday" name="birthday" aria-describedby="birthdayHelp" placeholder="{{birthday}}">
+                            <small id="birthdayHelp" class="form-text text-muted">If you don't want to change let it as it is
+                            </small>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label >Address</label>
+                            <input type="text"class="form-control" id="address" name="address" aria-describedby="addressHelp" placeholder="{{address}}">
+
+                            <small id="addressHelp" class="form-text text-muted">If you don't want to change let it as it is
+                            </small>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="lawyer">Lawyer</label>
+                            <input type="text" class="form-control" id="lawyer" name="lawyer" aria-describedby="lawyerHelp" placeholder="{{lawyer}}">
+                            <small id="lawyerHelp" class="form-text text-muted">If you don't want to change let it as it is
+                            </small>
+                        </div>
+
+
+
+
+
+                        <div class="custom-file mt-2 mb-2">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+          </div>
+        </div>
+                {% endblock %}
+
+
+          <!-- Modal Logout -->
+          <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to logout?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                  <a href="{% url 'authentication:logout'%}" class="btn btn-primary">Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!---Container Fluid-->
+      </div>
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+
+        <div class="container my-auto ">
+          <div class="copyright text-center my-auto">
+            <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> developed by
+              <b><a href="http://matromatic.com/" target="_blank">matromatic</a></b>
+            </span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Scroll to top -->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <script src="{% static 'bailiff_app/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'bailiff_app/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'bailiff_app/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'bailiff_app/js/ruang-admin.min.js' %}"></script>
+  <script src="{% static 'bailiff_app/vendor/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'bailiff_app/js/demo/chart-area-demo.js' %}"></script>
+</body>
+
+</html>
